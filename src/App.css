@@ -1,0 +1,12 @@
+@font-face {
+  font-family: yekan;
+  src: url(../src/assets/fonts/yekan.woff2);
+}
+
+#root {
+  font-family: yekan  !important; 
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
