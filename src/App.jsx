@@ -2,8 +2,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./page/Login";
 import { PATHS } from "./constants/path";
-import NotFound from "./components/NotFound";
 import HomePage from "./page/home";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (

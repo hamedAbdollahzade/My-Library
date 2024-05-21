@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ERROR_MESSAGES } from "../constants/messages";
 import toast from "react-hot-toast";
 import spinner from "../assets/Spinner.gif";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PATHS } from "../constants/path";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const Login = () => {
   const admin = {
     username: "admin",
     password: "admin",
-    name: "hamed Abdollahzade",
+    name: "H A M E D ",
     phone: +989107902735,
   };
 
@@ -21,12 +21,13 @@ const Login = () => {
   const [error, setError] = useState("");
   const [bgText, setBgText] = useState({});
 
+  console.log(bgText);
+
   useEffect(() => {
     // Quotes API => https://api.quotable.io/random
     const fetchApi = async () => {
       const result = await axios.get("https://api.quotable.io/random");
       result && setBgText(result?.data);
-      console.log(bgText);
     };
     setTimeout(() => {
       fetchApi();
@@ -66,59 +67,64 @@ const Login = () => {
   };
 
   return (
-    <div className="flex  ">
-      <div className="inset-0 p-4  overflow-hidden fixed z-[-1] font-extrabold  text-gray-500 opacity-5">
-        <h1> {bgText ? bgText.content : " Fetch Data ..."} </h1>
-      </div>
-      <div className="flex justify-between">
-        {loading ? (
-          <div>
-            <img src={spinner} className="w-40 rounded-full " alt="spinner" />
+    <div>
+      {loading ? (
+        <div>
+          <img src={spinner} className="w-40 rounded-full " alt="spinner" />
+        </div>
+      ) : (
+        <div className="flex">
+          <div className="flex flex-col gap-2 border border-r-8 text-wrap w-72 min-h-full overflow-hidden p-4  border-red-500   my-2 justify-center">
+            <h2 className="opacity-70 text-2xl">
+              {bgText.content || "w r i t i n g ... "}
+            </h2>
+            <h6 className="text-base font-extrabold opacity-40">
+              {"author :  " + (bgText.author || "w r i t i n g ...")}
+            </h6>
           </div>
-        ) : (
-          <>
-            <form
-              onSubmit={(e) => formHandler(e)}
-              className="flex flex-col gap-2 border  border-red-500 p-14  m-2 justify-center   "
-            >
-              <label htmlFor="username">Username</label>
-              <input
-                onChange={(e) =>
-                  setUser({ ...user, [e.target.name]: e.target.value })
-                }
-                type="text"
-                name="username"
-                id="username"
-                className="p-2 bg-transparent border  border-red-500 "
-                autoFocus
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                onChange={(e) =>
-                  setUser({ ...user, [e.target.name]: e.target.value })
-                }
-                type="password"
-                name="password"
-                id="password"
-                className="p-2 bg-transparent border border-red-500"
-              />
+          <form
+            onSubmit={(e) => formHandler(e)}
+            className="flex flex-col gap-2 border border-l-8   border-red-500  p-14   m-2 justify-center   "
+          >
+            <label htmlFor="username">Username</label>
+            <input
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
+              placeholder="* * * * * * *"
+              type="text"
+              name="username"
+              id="username"
+              className="p-2 bg-transparent border  border-red-500 "
+              autoFocus
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
+              placeholder="* * * * * * *"
+              type="password"
+              name="password"
+              id="password"
+              className="p-2 bg-transparent border border-red-500"
+            />
 
-              <button type="submit" className="mt-4 text-red-500">
-                Login
-              </button>
-            </form>
-            {error ? (
-              <div className=" text-red-500 max-w-96  overflow-hidden  p-8 mx-4">
-                <div className="font-extrabold text-2xl p-2">
-                  Error Message :{" "}
-                </div>
-                <hr />
-                <div className="p-4 tracking-wide break-words">{error}</div>
+            <button type="submit" className="mt-4 text-red-500">
+              Login
+            </button>
+          </form>
+          {error ? (
+            <div className=" text-red-500 max-w-96  overflow-hidden  p-8 mx-4">
+              <div className="font-extrabold text-2xl p-2">
+                Error Message :{" "}
               </div>
-            ) : null}
-          </>
-        )}
-      </div>
+              <hr />
+              <div className="p-4 tracking-wide break-words">{error}</div>
+            </div>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 };
