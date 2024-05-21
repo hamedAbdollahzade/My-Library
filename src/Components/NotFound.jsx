@@ -53,7 +53,7 @@ const NotFound = () => {
         Page Not Found <span className="text-6xl text-red-600"> 404</span>
       </h1>
       <div className="my-10  p-4 text-2xl w-fit border rounded-lg font-extrabold  ">
-        <Link to={PATHS.LOGIN}>Back</Link>
+        <Link to={PATHS.HOME}>Back</Link>
       </div>
     </div>
   );

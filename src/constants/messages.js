@@ -1,3 +1,4 @@
 export const ERROR_MESSAGES = {
-    INVALID FIELDS : "نا معتبر بودن فیلد ها",
+  INVALID_FIELDS: "Invalid fields !",
+  EMPTY_VALUES: "Field values must not be empty !",
 };
