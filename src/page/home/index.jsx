@@ -7,7 +7,19 @@ const HomePage = () => {
     }
   });
 
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <h1>Home Page </h1>
+      <button
+        onClick={() => {
+          sessionStorage.clear();
+          window.location.reload();
+        }}
+      >
+        Exit
+      </button>
+    </div>
+  );
 };
 
 export default HomePage;

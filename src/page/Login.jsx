@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import spinner from "../assets/Spinner.gif";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../constants/path";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,10 +19,19 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+  const [bgText, setBgText] = useState({});
 
   useEffect(() => {
-    console.log("user = ", user);
-  });
+    // Quotes API => https://api.quotable.io/random
+    const fetchApi = async () => {
+      const result = await axios.get("https://api.quotable.io/random");
+      result && setBgText(result?.data);
+      console.log(bgText);
+    };
+    setTimeout(() => {
+      fetchApi();
+    }, 3000);
+  }, []);
 
   const formHandler = (event) => {
     event.preventDefault();
@@ -56,54 +66,59 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-between">
-      {loading ? (
-        <div>
-          <img src={spinner} className="w-40 rounded-full " alt="spinner" />
-        </div>
-      ) : (
-        <>
-          <form
-            onSubmit={(e) => formHandler(e)}
-            className="flex flex-col gap-2 border  border-red-500 p-14  m-2 justify-center   "
-          >
-            <label htmlFor="username">Username</label>
-            <input
-              onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
-              }
-              type="text"
-              name="username"
-              id="username"
-              className="p-2 bg-transparent border  border-red-500 "
-              autoFocus
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
-              }
-              type="password"
-              name="password"
-              id="password"
-              className="p-2 bg-transparent border border-red-500"
-            />
+    <div className="flex  ">
+      <div className="inset-0 p-4  overflow-hidden fixed z-[-1] font-extrabold  text-gray-500 opacity-5">
+        <h1> {bgText ? bgText.content : " Fetch Data ..."} </h1>
+      </div>
+      <div className="flex justify-between">
+        {loading ? (
+          <div>
+            <img src={spinner} className="w-40 rounded-full " alt="spinner" />
+          </div>
+        ) : (
+          <>
+            <form
+              onSubmit={(e) => formHandler(e)}
+              className="flex flex-col gap-2 border  border-red-500 p-14  m-2 justify-center   "
+            >
+              <label htmlFor="username">Username</label>
+              <input
+                onChange={(e) =>
+                  setUser({ ...user, [e.target.name]: e.target.value })
+                }
+                type="text"
+                name="username"
+                id="username"
+                className="p-2 bg-transparent border  border-red-500 "
+                autoFocus
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                onChange={(e) =>
+                  setUser({ ...user, [e.target.name]: e.target.value })
+                }
+                type="password"
+                name="password"
+                id="password"
+                className="p-2 bg-transparent border border-red-500"
+              />
 
-            <button type="submit" className="mt-4 text-red-500">
-              Login
-            </button>
-          </form>
-          {error ? (
-            <div className=" text-red-500 max-w-96  overflow-hidden  p-8 mx-4">
-              <div className="font-extrabold text-2xl p-2">
-                Error Message :{" "}
+              <button type="submit" className="mt-4 text-red-500">
+                Login
+              </button>
+            </form>
+            {error ? (
+              <div className=" text-red-500 max-w-96  overflow-hidden  p-8 mx-4">
+                <div className="font-extrabold text-2xl p-2">
+                  Error Message :{" "}
+                </div>
+                <hr />
+                <div className="p-4 tracking-wide break-words">{error}</div>
               </div>
-              <hr />
-              <div className="p-4 tracking-wide break-words">{error}</div>
-            </div>
-          ) : null}
-        </>
-      )}
+            ) : null}
+          </>
+        )}
+      </div>
     </div>
   );
 };

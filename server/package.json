@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --watch sample-db.json --port 3010"
+    "server": "json-server --watch sample-db.json --port 3010"
   },
   "keywords": [],
   "author": "",
