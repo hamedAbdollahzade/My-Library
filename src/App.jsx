@@ -12,7 +12,10 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Navigate to={PATHS.HOME} />} />
           <Route path={PATHS.LOGIN} element={<Login />} />
-          <Route path={PATHS.HOME} element={<HomePage />} />
+          <Route path={PATHS.HOME} element={<HomePage />}>
+            <Route path={PATHS.MY_STUDIES} element={<div>MY_STUDIES </div>} />
+            <Route path={PATHS.FAVORITES} element={<>FAVORITES</>} />
+          </Route>
           <Route path={"*"} element={<NotFound />} />
         </Routes>
       </BrowserRouter>

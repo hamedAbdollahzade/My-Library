@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ERROR_MESSAGES } from "../constants/messages";
 import toast from "react-hot-toast";
 import spinner from "../assets/Spinner.gif";
-import { Link, useNavigate } from "react-router-dom";
-import { PATHS } from "../constants/path";
+import { useNavigate } from "react-router-dom";
+import { PATHS, fetchData } from "../constants/path";
 import axios from "axios";
 
 const Login = () => {
@@ -12,8 +12,9 @@ const Login = () => {
   const admin = {
     username: "admin",
     password: "admin",
-    name: "H A M E D ",
+    name: "Hame...:)",
     phone: +989107902735,
+    code: "",
   };
 
   const [loading, setLoading] = useState(false);
@@ -21,16 +22,21 @@ const Login = () => {
   const [error, setError] = useState("");
   const [bgText, setBgText] = useState({});
 
-  console.log(bgText);
+  // console.log(bgText);
+  let counter = useRef(0);
 
   useEffect(() => {
-    // Quotes API => https://api.quotable.io/random
-    const fetchApi = async () => {
-      const result = await axios.get("https://api.quotable.io/random");
-      result && setBgText(result?.data);
-    };
-    setTimeout(() => {
-      fetchApi();
+    console.log("Render Component Login = ", (counter.current += 1));
+  });
+
+  useEffect(() => {
+    setTimeout(async () => {
+      try {
+        const result = await axios.get(fetchData.URL_Quotes);
+        result && setBgText(result?.data);
+      } catch (error) {
+        console.log(error.message);
+      }
     }, 3000);
   }, []);
 

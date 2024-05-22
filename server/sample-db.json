@@ -1,3 +1,74 @@
 {
-  "users": {}
+  "books": [
+    {
+      "name": "Clean Code",
+      "author": "Robert Martins",
+      "price": 175000,
+      "description": "One of the best books recommended to every programmer and software engineer is Clean Code by Robert Martins. Familiarity with Clean Code allows you to modify a code after writing it in a way that is very readable and other programmers who work on it are able to easily understand and change the code.   In fact, this coding method can be one of the main factors that distinguish a professional programmer from other programmers. After comparing Clean Code and Bad Code, this book deals with learning neat and readable programming and helps you code professionally with simple techniques.   This author's books are better known under the Uncle Bob brand.",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/7626d623932888d8157907d428f679daefd15539_1618992975.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "Clean Architecture",
+      "author": "Robert Martins",
+      "price": 92300,
+      "description": "In addition to emphasizing software implementation algorithms, this book also deals with the importance of following the principles of software system design. Uncle Bob believes that one of the structural challenges in application design is the modularity, flexibility and readability of its codes, which makes adding a new feature to the software easier. This book describes a set of principles and models to deal with these challenges.",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/d0037ccc6244f7ad64b1fff005b5359e66c6697d_1620632409.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90  "
+    },
+    {
+      "name": " The Road to learn React ",
+      "author": "Robin Wieruch",
+      "price": 237000,
+      "description": "این کتاب کتاب برای افراد مبتدیه محتوای خوبی داره اما کاغذ و جلد کیفیتی خوبی ندارن",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/2f1400922021ac0cbea8148f665fa2f21d9067e5_1624907102.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": " The Three-Box Solution Playbook",
+      "author": "Harvard Business Review Press",
+      "price": 211000,
+      "description": "   کتاب The Three-Box Solution Playbook: Tools and Tactics for Creating Your Company s Strategy اثر Vijay Govindarajan و Manish Tangri یک کتاب مفید و بسیار موفق است که به شما کمک می‌کند تا با استفاده از روش‌های سه باکس استراتژی خود را بهبود ببخشیدs",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/988ec232f08de7fd01848234cc33c8bd40cc80d0_1696300019.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "کتاب برنامه نویسی تحت وب از پایه تا پیشرفته  ",
+      "author": "حمیدرضا طالبی",
+      "price": 389800,
+      "description": "کتاب «برنامه‌نویسی تحت وب از پایه تا پیشرفته» به قلم مهندس «حمیدرضا طالبی» و دکتر «علی‌اکبر جلالی» تالیف شده است. این کتاب در شانزده فصل با عناوین: «فصل اول: HTML,XHTML,CSS چیست؟»، «فصل دوم: XHTML»، «فصل سوم: CSS(Cascade Style Sheet)»، «فصل چهارم: JavaScript»، «فصل پنجم: SQL SERVER»، «فصل ششم: کار با داده در ASP.NET»، «فصل هفتم: کار با کنترل‌های سروری ASP.NET»، «فصل هشتم: کار با Theme&Profile»، «فصل نهم: کار با MasterPage»، «فصل دهم: WebPart»، «فصل یازدهم: AJAX»، «فصل دوازدهم: Debugging»، «فصل سیزدهم: ADO.NET»، «فصل چهاردهم: نکته‌ها و ترفندهایی در ASP.NET»، «فصل پانزدهم: jQuery»، «فصل شانزدهم: ASP.NETMVC» و «پیوست: دستورات CSS و HTML» تدوین شده است. در بخشی از مقدمه مولفان می‌خوانید: «در این کتاب ابتدا از زبان‌های ساده تحت وب کار آغاز می‌شود و به زبان ASP.NET 4.0 و تکنولوژی‌های مرتبط به آن ختم شده است. همچنین دو فصل jQuery و ASP.NETMVC نیز در آن قرار دارد تا تکنولوژی‌های جدید را پشتیبانی نماید. در این کتاب از برخی مثال‌ها فایل تصویری تهیه شده است تا کاربران بتوانند نحوه انجام پروژه را فراگیرند.» کتاب حاضر به همراه یک لوح فشرده (CD) را انتشارات موسسه فرهنگی هنری «دیباگران تهران» منتشر کرده است",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/1406568.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "The Star Wars Archives. 1977-1983 ",
+      "author": "Paul Duncan",
+      "price": 14250000,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptates adipisci, architecto similique itaque aperiam iste. Eaque quia doloribus veritatis laborum officiis illum, officia hic eos quas iusto, quaerat nulla.",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/cc626508bb52dffd4c96bb7b466d848196a206ee_1677535621.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "Rembrandt The Complete Paintings",
+      "author": "Volker Manuth",
+      "price": 14250000,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptates adipisci, architecto similique itaque aperiam iste. Eaque quia doloribus veritatis laborum officiis illum, officia hic eos quas iusto, quaerat nulla.",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/063dd9892a0c2a70ae50864f842b75b33dd90b34_1699895782.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "FOUR CORNERS 1",
+      "author": "JACK C.RICHARDS AND DAVID BOHLKE",
+      "price": 14250000,
+      "description": "ویرایش دوم مجموعه محبوب Four_Corners که محصول اخیر(2019-2018) انتشارات کمبریج است که روش شناسی ارتباطی موثر را با رویکرد کاربردی  کرده است. هر کتاب از این مجموعه شامل 12 درس می باشد",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/117241108.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "Interchange 5th 2",
+      "author": "Jack C. Richards",
+      "price": 148000,
+      "description": "کتاب‌های این مجموعه در بسیاری از موسسات آموزش زبان و توسط اساتید بسیاری تدریس می‌شود. در هر درس به بررسی یک موضوع خاص پرداخته است. درس ها از بخش‌های مختلفی تشکیل شده و با ارائه‌ متن و تمرین‌های متنوع سعی در آموزش مهارت های اصلی و واژگان زبان انگلیسی به شیوه‌ای جذاب را دارد. دانشجویان در دوره های آموزش زبان و همه کسانی که به طور حرفه ای در توسعه و استفاده از آزمون های زبان تحصیل می کنند، این منبع را یکی از متون معتبر و جامع در راستای مقاصد و اهداف خود تلقی می کنند. مجموعه حاضر درچهار سطح براي، بزرگسالان و نوجوانان مي باشند. هر واحد از هر سطح به آموزش دستور زبان انگليسي، توسعه مهارت هاي صحبت کردن و گوش دادن پرداخته است. از ويژگي هاي اين مجموعه برنامه درسي مرتبط، آموزش دستور زبان، آموزش لغت و آموزش تلفظ است. اين مجموعه شامل پيشنهادات از معلمان ودانش آموزان سراسر جهان است. اين مجموعه همانند ويرايش هاي قبل،داراي 4 سطح مختلف است.اين مجموعه با تاکيد بر مهارت هاي Speaking و Listening به پيش مي رود. محتوا از طريق CD همراه کتاب در اختيار زبان آموز قرار مي گيرد. اين مجموعه بيشتر ميخواهد زبان آموز را به گونه اي بار بياورد که در موقعيت هاي مختلف توانايي گفت و گو هاي ساده را بدون هيچ مشکلي داشته باشد. البته در اين مجموعه ي 4 جلدي،دايره واژگان و گرامر فرد نيز افزايش پيدا مي کند. از ويژگي هاي بارز ويرايش پنجم کتاب آموزشگاهي Interchange ميتوان به موارد زير اشاره کرد: ارائه ي نقطه نظرات و ديدگاه ها از سوي هزاران مدرس،اين اطمينان و ضمانت را به زبان آموزان ميدهد که موضوعات و تمرين هاي ويرايش پنجم دقيقأ مخصوص زبان آموزان و کلاسهاي مختلف تدريس است. ويرايش پنجم اين کتاب داراي محتويات بسيار به روز و جديد و طراحي جذاب و ساختار بسيار ساده و بخش بندي شده است که مدرسان و زبان آموزان هردو آنها را دوست دارند. ارائه ي رويکرد بسيار واضح براي گفتگو و بحث هاي آزاد نتيجه بخش و مطلوب هستند و به زبان آموزان کمک ميکنند که در مکالمه ي انگليسي شان،از همان ابتدا با اعتماد به نفس بسيار عمل کنند. اين کتاب داراي Workbook نيز است",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/f752b889d5e0cd8831a0894bc121118c33f3d51d_1606275991.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "name": "کتاب 48 قانون قدرت",
+      "author": "رابرت گرین",
+      "price": 99000,
+      "description": "انسان‌ها معمولاً علاقه خاص و عمیقی به قدرت دارند و دوست دارند در زندگی خود، شخصی قدرتمند و صاحب نفوذ باشند. اگر شما هم جزو این افراد قدرت‌دوست هستید، باید بدانید که انسان‌های قدرتمند در سراسر تاریخ، مهارت و خصوصیات مشترکی داشته‌اند و خوشبختانه این مهارت‌ها، آموختنی است. یکی از کتاب‌های ارزشمندی که مجموعه‌ی ویژگی‌ها و مهارت‌های انسان‌های قدرتمند جهان را گرد آورده و در اختیار ما قرار داده، کتاب 48 قانون قدرت اثر رابرت گرین است.   اگر شما هم تمایل دارید در زندگی شخصی و اجتماعی خود، انسانی قدرتمند و هوشمند باشید، می توانید کتاب 48 قانون قدرت اثر رابرت گرین را مطالعه کنید.لازم به ذکر است این کتاب با شیوه ای متفاوت شما را مجبور به انجام دادن میکند و با تمام کتاب هایی که در زمینه خودسازی خوانده ای کاملا متفاوت است.",
+      "image": "https://dkstatics-public.digikala.com/digikala-products/8035657f6cd1195151b387b1a118b04c00770d22_1711558021.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    }
+  ]
 }
