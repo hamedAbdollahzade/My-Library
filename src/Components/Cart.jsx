@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
-import Spinner from "../assets/Spinner.gif";
+import { useNavigate } from "react-router-dom";
 
-const Book = ({ name, author, image, price, children }) => {
+const Cart = ({ name, author, image, price, path, bookId, children }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className=" overflow-hidden w-52  text-center hover:mx-4  shadow-black transition-all duration-500 shadow-sm hover:shadow-red-500 hover:shadow-2xl  cursor-pointer rounded-md  flex flex-col justify-between items-center ">
+    <div
+      onClick={path && bookId ? () => navigate(`${path}/${bookId}`) : ""}
+      className=" overflow-hidden w-52  text-center hover:mx-4  shadow-black transition-all duration-500 shadow-sm hover:shadow-red-500 hover:shadow-2xl  cursor-pointer rounded-md  flex flex-col justify-between items-center "
+    >
       {image && <img className="w-full h-52 p-2 " src={image}></img>}
       {name && (
         <div className=" font-extrabold   text-lg p-2 w-full">{name} </div>
@@ -25,10 +30,12 @@ const Book = ({ name, author, image, price, children }) => {
   );
 };
 
-export default Book;
+export default Cart;
 
-Book.prototype = {
+Cart.prototype = {
   children: PropTypes.element,
+  bookId: PropTypes.number,
+  path: PropTypes.string,
   price: PropTypes.number,
   name: PropTypes.string,
   author: PropTypes.string,

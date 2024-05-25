@@ -3,6 +3,7 @@ export const PATHS = {
   HOME: "/home",
   MY_STUDIES: "/home/mystudies",
   FAVORITES: "/home/favorites",
+  VIEW: "/home/view",
 };
 
 export const fetchData = {

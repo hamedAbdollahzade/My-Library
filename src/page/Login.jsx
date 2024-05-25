@@ -59,6 +59,7 @@ const Login = () => {
   const formHandler = (event) => {
     event.preventDefault();
     setLoading(true);
+
     setTimeout(() => {
       try {
         if (!inputLogin.username || !inputLogin.password) {
@@ -66,11 +67,12 @@ const Login = () => {
           throw new Error(ERROR_MESSAGES.EMPTY_VALUES);
         }
 
-        users.map((item) => {
+        const valid = users.filter((item) => {
           if (
             inputLogin.username === item.username &&
             inputLogin.password === item.password
           ) {
+            setError("");
             const userInfo = {
               name: item.name,
               id: item.userId,
@@ -78,26 +80,30 @@ const Login = () => {
               phone: item.phone,
             };
             /*
-        sessionStorage is similar to localStorage ;
-        the difference is that while data in localStorage doesn't expire,
-        data in sessionStorage is cleared when the page session ends.
-        Whenever a document is loaded in a particular tab in the browser,
-        a unique page session gets created and assigned to that particular tab.
-            */
+            sessionStorage is similar to localStorage ;
+            the difference is that while data in localStorage doesn't expire,
+            data in sessionStorage is cleared when the page session ends.
+            Whenever a document is loaded in a particular tab in the browser,
+            a unique page session gets created and assigned to that particular tab.
+                */
 
             sessionStorage.setItem("token", JSON.stringify(userInfo));
 
             toast.success("Login Successful");
             toast.loading(`Welcome   "${item.name}"`, { duration: 3000 });
-            setError("");
             setTimeout(() => {
               navigate(PATHS.HOME);
               setLoading(false);
             }, 3000);
-          } else {
-            throw new Error(ERROR_MESSAGES.INVALID_FIELDS);
+
+            return true;
           }
         });
+
+        if (valid.length == 0) {
+          setLoading(false);
+          throw new Error(ERROR_MESSAGES.INVALID_FIELDS);
+        }
       } catch (error) {
         setError(error.message);
         setLoading(false);

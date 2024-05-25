@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Link, Outlet, useSearchParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useSearchParams } from "react-router-dom";
 import { PATHS, fetchData } from "../../constants/path";
 import axios from "axios";
-import Book from "../../Components/Book";
+import Cart from "../../Components/Cart";
 import Spinner from "../../assets/Spinner.gif";
 
 const HomePage = () => {
@@ -10,6 +10,8 @@ const HomePage = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const navigate = useNavigate();
 
   let renderCount = useRef(0);
   useEffect(() => {
@@ -53,7 +55,7 @@ const HomePage = () => {
      */
 
     if (!sessionStorage.getItem("token")) {
-      window.location.href = "/login";
+      navigate(PATHS.LOGIN);
     }
   });
 
@@ -115,14 +117,16 @@ const HomePage = () => {
                   .includes(filter.trim().toLowerCase());
               }
             })
-            .map((books, index) => (
-              <Book
-                key={index}
+            .map((books) => (
+              <Cart
+                key={books?.id}
+                bookId={books?.id}
+                path={PATHS.VIEW}
                 name={books?.name}
                 author={books?.author}
                 image={books?.image}
                 price={books?.price}
-              ></Book>
+              ></Cart>
             ))}
         </div>
       </section>
