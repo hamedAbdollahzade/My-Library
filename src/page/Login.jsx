@@ -13,6 +13,14 @@ const Login = () => {
     {
       username: "admin",
       password: "admin",
+      name: "admin Library",
+      phone: +989107902735,
+      userId: "admin-id9107902735",
+      role: "ADMIN",
+    },
+    {
+      username: "hamed",
+      password: "hamed",
       name: "Hame...:)",
       phone: +989107902735,
       userId: "hamed-id9107902735",
@@ -27,7 +35,12 @@ const Login = () => {
 
   // console.log(bgText);
   let counter = useRef(0);
-
+  /*
+? useRef Hook :
+    The useRef Hook allows you to persist values between renders.
+    It can be used to store a mutable value that does not cause a re-render when updated.
+    It can be used to access a DOM element directly.
+  */
   useEffect(() => {
     console.log("Render Component Login = ", (counter.current += 1));
   });
@@ -64,6 +77,14 @@ const Login = () => {
               role: item.role,
               phone: item.phone,
             };
+            /*
+        sessionStorage is similar to localStorage ;
+        the difference is that while data in localStorage doesn't expire,
+        data in sessionStorage is cleared when the page session ends.
+        Whenever a document is loaded in a particular tab in the browser,
+        a unique page session gets created and assigned to that particular tab.
+            */
+
             sessionStorage.setItem("token", JSON.stringify(userInfo));
 
             toast.success("Login Successful");
