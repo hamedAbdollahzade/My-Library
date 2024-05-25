@@ -9,16 +9,19 @@ import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
 
-  const admin = {
-    username: "admin",
-    password: "admin",
-    name: "Hame...:)",
-    phone: +989107902735,
-    code: "",
-  };
+  const users = [
+    {
+      username: "admin",
+      password: "admin",
+      name: "Hame...:)",
+      phone: +989107902735,
+      userId: "hamed-id9107902735",
+      role: "ADMIN",
+    },
+  ];
 
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({ username: "", password: "" });
+  const [inputLogin, setInputLogin] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
   const [bgText, setBgText] = useState({});
 
@@ -45,26 +48,35 @@ const Login = () => {
     setLoading(true);
     setTimeout(() => {
       try {
-        if (!user.username || !user.password) {
+        if (!inputLogin.username || !inputLogin.password) {
           setLoading(false);
           throw new Error(ERROR_MESSAGES.EMPTY_VALUES);
         }
 
-        if (
-          user.username === admin.username &&
-          user.password === admin.password
-        ) {
-          sessionStorage.setItem("token", JSON.stringify(admin.phone));
-          toast.success("Login Successful");
-          toast.loading(`Welcome   "${admin.name}"`, { duration: 3000 });
-          setError("");
-          setTimeout(() => {
-            navigate(PATHS.HOME);
-            setLoading(false);
-          }, 3000);
-        } else {
-          throw new Error(ERROR_MESSAGES.INVALID_FIELDS);
-        }
+        users.map((item) => {
+          if (
+            inputLogin.username === item.username &&
+            inputLogin.password === item.password
+          ) {
+            const userInfo = {
+              name: item.name,
+              id: item.userId,
+              role: item.role,
+              phone: item.phone,
+            };
+            sessionStorage.setItem("token", JSON.stringify(userInfo));
+
+            toast.success("Login Successful");
+            toast.loading(`Welcome   "${item.name}"`, { duration: 3000 });
+            setError("");
+            setTimeout(() => {
+              navigate(PATHS.HOME);
+              setLoading(false);
+            }, 3000);
+          } else {
+            throw new Error(ERROR_MESSAGES.INVALID_FIELDS);
+          }
+        });
       } catch (error) {
         setError(error.message);
         setLoading(false);
@@ -95,10 +107,14 @@ const Login = () => {
             <label htmlFor="username">Username</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setInputLogin({
+                  ...inputLogin,
+                  [e.target.name]: e.target.value,
+                })
               }
               placeholder="* * * * * * *"
               type="text"
+              value={inputLogin.username}
               name="username"
               id="username"
               className="p-2 bg-transparent border  border-red-500 "
@@ -107,8 +123,12 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setInputLogin({
+                  ...inputLogin,
+                  [e.target.name]: e.target.value,
+                })
               }
+              value={inputLogin.password}
               placeholder="* * * * * * *"
               type="password"
               name="password"

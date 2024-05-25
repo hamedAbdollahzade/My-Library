@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link, Outlet, useSearchParams } from "react-router-dom";
 import { PATHS, fetchData } from "../../constants/path";
 import axios from "axios";
 import Book from "../../Components/Book";
@@ -7,18 +7,20 @@ import Spinner from "../../assets/Spinner.gif";
 
 const HomePage = () => {
   const [reload, setReload] = useState(false);
-  const [books, setBooks] = useState(null);
+  const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log("books =", books);
-  let counter = useRef(0);
-
+  let renderCount = useRef(0);
   useEffect(() => {
-    if (!sessionStorage.getItem("token")) {
-      window.location.href = "/login";
-    }
-    console.log("Render Component HomePage = ", (counter.current += 1));
+    console.log(
+      "Render Component index HomePge Count =",
+      (renderCount.current += 1)
+    );
+    console.log(books);
   });
+
+  // console.log("books =", books);
 
   useEffect(() => {
     setLoading(true);
@@ -36,26 +38,24 @@ const HomePage = () => {
     }, 2000);
   }, [reload]);
 
-  const searchHandler = (e) => {
-    setLoading(true);
+  useLayoutEffect(() => {
+    /*
+     * NOTE 
+    -- Steps Before useEffect Function Run 
+    1 - User take action --> clicking some button
+    2 - React Changes the state
+    ! 3 - React Handles DOM mutation --> ( useLayout fires)  
+    4 - Browser Prints DOM changes to browser screen 
+    ! 5 - After Browser Prints DOM changes to screen then (useEffect fires) 
+    
+    --> useEffect is "asynchronous"
+    --> useLayout is "synchronize" 
+     */
 
-    let search = e.target.value;
-    if (search.length == 0) {
-      setReload(!reload);
-      setLoading(false);
-    } else if (search.length > 3) {
-      setTimeout(() => {
-        let result = books?.filter((c) =>
-          c.name.toLowerCase().includes(search.toLowerCase())
-        );
-
-        result.length == 0 ? setBooks(null) : setBooks(result);
-        setLoading(false);
-      }, 3000);
-    } else {
-      setLoading(false);
+    if (!sessionStorage.getItem("token")) {
+      window.location.href = "/login";
     }
-  };
+  });
 
   return (
     <div className="w-[95vw] min-h-screen flex flex-col justify-center items-center transition-all duration-700 ">
@@ -69,7 +69,8 @@ const HomePage = () => {
         </Link>
         <input
           type="search"
-          onChange={(e) => searchHandler(e)}
+          value={searchParams.get("search") || ""}
+          onChange={(e) => setSearchParams({ search: e.target.value })}
           className="p-3  outline-none flex-1 rounded-md bg-red-950 focus:bg-red-700 transition-all duration-500  "
           placeholder="Search ..."
         />
@@ -100,30 +101,35 @@ const HomePage = () => {
       {/* for Body  */}
       <section className="  w-full flex flex-col justify-center items-center flex-1 ">
         <Outlet />
-        {!books && (
-          <div className=" text-4xl font-extrabold  "> Not Found Book :( </div>
-        )}
 
         <div className=" flex flex-wrap w-full h-full justify-center gap-4 p-10 m-10 ">
-          {books?.map((books, index) => (
-            <Book
-              key={index}
-              name={books?.name}
-              author={books?.author}
-              image={books?.image}
-              price={books?.price}
-            ></Book>
-          ))}
+          {books
+            .filter((item) => {
+              let filter = searchParams.get("search");
+              if (!filter) return true;
+
+              if (filter.length > 3) {
+                return item.name
+                  .toLowerCase()
+                  .trim()
+                  .includes(filter.trim().toLowerCase());
+              }
+            })
+            .map((books, index) => (
+              <Book
+                key={index}
+                name={books?.name}
+                author={books?.author}
+                image={books?.image}
+                price={books?.price}
+              ></Book>
+            ))}
         </div>
       </section>
       {/* for Body  */}
 
-      {/* footer */}
-      {/* <section className="w-full  flex justify-center items-center overflow-hidden bg-red-700">
-        Footer
-      </section> */}
       {loading && (
-        <div className=" fixed inset-0 top-16   flex  flex-col justify-center items-center backdrop-blur-sm ">
+        <div className=" fixed inset-0 top-16  flex flex-col justify-center items-center backdrop-blur-sm ">
           <div>
             <img className="w-20  " src={Spinner} alt="spinner" />
           </div>
