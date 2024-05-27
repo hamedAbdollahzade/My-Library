@@ -7,7 +7,6 @@ import Spinner from "../../assets/Spinner.gif";
 
 const HomePage = () => {
   const [user, setUser] = useState();
-  const [reload, setReload] = useState(false);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,7 +39,7 @@ const HomePage = () => {
         console.log(error.message);
       }
     }, 2000);
-  }, [reload]);
+  }, []);
 
   useLayoutEffect(() => {
     /*
@@ -100,7 +99,8 @@ const HomePage = () => {
           className="text-red-500 shadow-md  shadow-red-600"
           onClick={() => {
             sessionStorage.clear();
-            setReload(!reload);
+            navigate(PATHS.LOGIN);
+            location.reload();
           }}
         >
           Exit
