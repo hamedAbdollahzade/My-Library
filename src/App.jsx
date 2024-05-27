@@ -5,6 +5,7 @@ import { PATHS } from "./constants/path";
 import HomePage from "./page/home";
 import NotFound from "./Components/NotFound";
 import View from "./page/view";
+import Add from "./page/add";
 
 function App() {
   return (
@@ -14,8 +15,11 @@ function App() {
           <Route path={"/"} element={<Navigate to={PATHS.HOME} />} />
           <Route path={PATHS.LOGIN} element={<Login />} />
           <Route path={PATHS.HOME} element={<HomePage />}>
-            <Route path={PATHS.MY_STUDIES} element={<div>MY_STUDIES </div>} />
-            <Route path={PATHS.FAVORITES} element={<>FAVORITES</>} />
+            <Route
+              path={PATHS.MY_LIBRARY}
+              element={<> Coming soon ....</>}
+            />
+            <Route path={PATHS.ADD} element={<Add />} />
             <Route path={`${PATHS.VIEW}/:bookId`} element={<View />} />
           </Route>
           <Route path={"*"} element={<NotFound />} />

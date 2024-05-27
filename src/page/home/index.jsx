@@ -6,10 +6,12 @@ import Cart from "../../Components/Cart";
 import Spinner from "../../assets/Spinner.gif";
 
 const HomePage = () => {
+  const [user, setUser] = useState();
   const [reload, setReload] = useState(false);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -54,10 +56,13 @@ const HomePage = () => {
     --> useLayout is "synchronize" 
      */
 
-    if (!sessionStorage.getItem("token")) {
+    const newUser = JSON.parse(sessionStorage.getItem("token"));
+    if (!newUser) {
       navigate(PATHS.LOGIN);
+    } else {
+      !user && setUser(newUser);
     }
-  });
+  }, [user, navigate]);
 
   return (
     <div className="w-[95vw] min-h-screen flex flex-col justify-center items-center transition-all duration-700 ">
@@ -69,27 +74,30 @@ const HomePage = () => {
         >
           Home
         </Link>
+        <Link
+          to={PATHS.ADD}
+          className="text-lg mx-8 flex-shrink-0 text-white font-extrabold"
+        >
+          Add Book
+        </Link>
         <input
           type="search"
           value={searchParams.get("search") || ""}
           onChange={(e) => setSearchParams({ search: e.target.value })}
-          className="p-3  outline-none flex-1 rounded-md bg-red-950 focus:bg-red-700 transition-all duration-500  "
+          className="p-2  outline-none flex-1 rounded-md bg-red-900 focus:bg-red-700 transition-all duration-500  "
           placeholder="Search ..."
         />
         <Link
-          to={PATHS.MY_STUDIES}
+          to={PATHS.MY_LIBRARY}
           className="text-lg mx-8 flex-shrink-0 text-white font-extrabold"
         >
-          My studies <span className="text-red-600 p-2">0</span>
+          My Library
         </Link>
-        <Link
-          to={PATHS.FAVORITES}
-          className="text-lg mx-8 flex-shrink-0 text-white font-extrabold"
-        >
-          Favorites
+        <Link className="p-4 font-extrabold ">
+          <span className="mx-2 text-red-400 text-sm">{user?.name}</span>{" "}
         </Link>
         <button
-          className="text-red-500"
+          className="text-red-500 shadow-md  shadow-red-600"
           onClick={() => {
             sessionStorage.clear();
             setReload(!reload);
