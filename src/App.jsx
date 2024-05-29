@@ -15,10 +15,7 @@ function App() {
           <Route path={"/"} element={<Navigate to={PATHS.HOME} />} />
           <Route path={PATHS.LOGIN} element={<Login />} />
           <Route path={PATHS.HOME} element={<HomePage />}>
-            <Route
-              path={PATHS.MY_LIBRARY}
-              element={<> Coming soon ....</>}
-            />
+            <Route path={PATHS.MY_LIBRARY} element={<> Coming soon ....</>} />
             <Route path={PATHS.ADD} element={<Add />} />
             <Route path={`${PATHS.VIEW}/:bookId`} element={<View />} />
           </Route>

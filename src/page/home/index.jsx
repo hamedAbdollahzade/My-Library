@@ -4,16 +4,23 @@ import { PATHS, fetchData } from "../../constants/path";
 import axios from "axios";
 import Cart from "../../Components/Cart";
 import Spinner from "../../assets/Spinner.gif";
+import _ from "lodash";
 
 const HomePage = () => {
   const [user, setUser] = useState();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(user);
-
   const navigate = useNavigate();
 
+  // console.log(user);
+
+  // Lodash Test
+  // const arr = [1, 2, 3, 4, 5];
+  // console.log(_.reverse(arr));
+
+
+  
   let renderCount = useRef(0);
   useEffect(() => {
     console.log(

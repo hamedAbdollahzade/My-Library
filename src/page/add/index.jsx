@@ -1,131 +1,164 @@
 import axios from "axios";
-import { useState } from "react";
+// import { useState } from "react";
 import { fetchData } from "../../constants/path";
-import { ERROR_MESSAGES } from "../../constants/messages";
 import toast from "react-hot-toast";
+import { formSchema } from "../../validations/formValidation";
+import { useFormik } from "formik";
 
 const Add = () => {
-  const [book, setBook] = useState({
-    name: "",
-    author: "",
-    price: "",
-    description: "",
-    image: "",
-  });
-  const [error, setError] = useState(false);
+  // const [book, setBook] = useState({
+  //   name: "",
+  //   author: "",
+  //   price: null,
+  //   description: "",
+  //   image: "",
+  // });
+  // const [error, setError] = useState(false);
 
-  const formHandler = async (e) => {
-    e.preventDefault();
-    console.log(book);
-
-    const values = Object.values(book);
-    const valid = values.every((item) => item.length > 3);
-
-    if (valid) {
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      author: "",
+      price: null,
+      description: "",
+      image: "",
+    },
+    validationSchema: formSchema,
+    onSubmit: async (values) => {
       try {
-        const result = await axios.post(fetchData.URL_BOOKS, book);
+        const result = await axios.post(fetchData.URL_BOOKS, values);
         if (result.status == "201") {
           toast.success("The book has been successfully added ...");
-          setError("");
-          setBook({
-            name: "",
-            author: "",
-            price: "",
-            description: "",
-            image: "",
-          });
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
+          location.reload();
         } else {
           toast.error("Error");
         }
       } catch (error) {
-        error.message;
+        console.log(error.message);
       }
-    } else {
-      setError(ERROR_MESSAGES.INVALID_FIELDS);
-    }
-  };
+    },
+  });
+
+  // const formHandler = async (e) => {
+  //   e.preventDefault();
+  //   console.log(book);
+
+  //   // const values = Object.values(book);
+  //   // const valid = values.every((item) => item.length > 3);
+
+  //   // if (valid) {
+  //   try {
+  //     // Because we are in the try catch , if it is not valid, the rest of the code will not be executed ...
+  //     // await formSchema.validate(book);
+
+  //     const result = await axios.post(fetchData.URL_BOOKS, book);
+  //     if (result.status == "201") {
+  //       toast.success("The book has been successfully added ...");
+  //       setError("");
+  //       setBook({
+  //         name: "",
+  //         author: "",
+  //         price: "",
+  //         description: "",
+  //         image: "",
+  //       });
+  //       setTimeout(() => {
+  //         location.reload();
+  //       }, 1000);
+  //     } else {
+  //       toast.error("Error");
+  //     }
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  //   // } else {
+  //   //   setError(ERROR_MESSAGES.INVALID_FIELDS);
+  //   // }
+  // };
 
   return (
     <div className=" p-6 w-full flex justify-center items-center  ">
       <form
-        onSubmit={(e) => formHandler(e)}
+        onSubmit={formik.handleSubmit}
         className="flex flex-col gap-2 w-3/4"
       >
         {/* <label htmlFor="name">name</label> */}
         <input
-          value={book.name}
-          onChange={(e) =>
-            setBook({ ...book, [e.target.name]: e.target.value })
-          }
+          id="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
           placeholder="name Book"
           type="text"
           name="name"
-          id="name"
           className="p-2 bg-transparent border  border-red-500 "
           autoFocus
         />
+        {formik.errors.name ? (
+          <div className="text-red-500">{formik.errors.name}</div>
+        ) : null}
 
         {/* <label htmlFor="author">author</label> */}
         <input
-          value={book.author}
-          onChange={(e) =>
-            setBook({ ...book, [e.target.name]: e.target.value })
-          }
+          id="author"
+          value={formik.values.author}
+          onChange={formik.handleChange}
           placeholder="author"
           type="text"
           name="author"
-          id="author"
           className="p-2 bg-transparent border  border-red-500 "
         />
+        {formik.errors.author ? (
+          <div className="text-red-500">{formik.errors.author}</div>
+        ) : null}
 
         {/* <label htmlFor="price">price</label> */}
         <input
-          value={book.price}
-          onChange={(e) =>
-            setBook({ ...book, [e.target.name]: e.target.value })
-          }
+          id="price"
+          value={formik.values.price}
+          onChange={formik.handleChange}
           placeholder="price"
           type="number"
           name="price"
-          id="price"
           className="p-2 bg-transparent border  border-red-500 "
         />
+        {formik.errors.price ? (
+          <div className="text-red-500">{formik.errors.price}</div>
+        ) : null}
 
         {/* <label htmlFor="description">description</label> */}
         <textarea
-          value={book.description}
-          onChange={(e) =>
-            setBook({ ...book, [e.target.name]: e.target.value })
-          }
-          name="description"
           id="description"
+          value={formik.values.description}
+          onChange={formik.handleChange}
+          name="description"
           placeholder="description"
           className="p-2 bg-transparent border  border-red-500 "
         ></textarea>
+        {formik.errors.description ? (
+          <div className="text-red-500">{formik.errors.description}</div>
+        ) : null}
 
         {/* <label htmlFor="image">image</label> */}
         <input
-          value={book.image}
-          onChange={(e) =>
-            setBook({ ...book, [e.target.name]: e.target.value })
-          }
+          id="image"
+          value={formik.values.image}
+          onChange={formik.handleChange}
           placeholder="image"
           type="text"
           name="image"
-          id="image"
           className="p-2 bg-transparent border  border-red-500 "
         />
+        {formik.errors.image ? (
+          <div className="text-red-500">{formik.errors.image}</div>
+        ) : null}
 
         <button type="submit">Add Book </button>
       </form>
-      {error && (
+      {/* {error && (
         <div className="shadow-2xl shadow-red-400 text-2xl rounded-lg m-4 p-4 w-full text-center">
           {error}{" "}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
