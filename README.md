@@ -1,5 +1,5 @@
 <h1> https://hamedabdollahzade.github.io/My-Library/ </h1>
-<h3> "axios": "^1.7.1",
+<h3> { "axios": "^1.7.1",
     "formik": "^2.4.6",
     "json-server": "^1.0.0-beta.0",
     "lodash": "^4.17.21",
@@ -9,8 +9,8 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.23.1",
     "yup": "^1.4.0"
- "tailwindcss": "^3.4.3",
-    "vite": "^5.2.0"
+     "tailwindcss": "^3.4.3",
+    "vite": "^5.2.0" }
 </h3>
 
     
