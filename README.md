@@ -8,7 +8,10 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.23.1",
-    "yup": "^1.4.0"</h3>
+    "yup": "^1.4.0"
+ "tailwindcss": "^3.4.3",
+    "vite": "^5.2.0"
+</h3>
 
     
 ![Screenshot (5)](https://github.com/hamedAbdollahzade/My-Library/assets/137279292/bd73bcf2-09a3-422c-ae0f-756a5f3109e6)
